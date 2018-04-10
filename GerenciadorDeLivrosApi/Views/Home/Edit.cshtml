@@ -1,0 +1,43 @@
+﻿@Scripts.Render("~/Scripts/Views/Home.js")
+<script>
+	$(document).ready(function () {
+		HomeInit();
+	})
+</script>
+<div class="container body-content" style="margin-top: 10%">
+	<div id="body">
+		<form class="form-horizontal col-md-offset-3">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label"><b>*</b>Nome Usuário</label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" id="inputUser" placeholder="Nome Usuário">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label"><b>*</b>Usuário</label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" id="inputEmail" placeholder="Usuário para Login">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label"><b>*</b>Senha</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" id="inputPassword" placeholder="Password" min="5">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label"><b>*</b>Confirmar Senha</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" id="inputRePassword" placeholder="Password" min="5">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="button" class="btn btn-default" onclick="Register()">Cadastrar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>

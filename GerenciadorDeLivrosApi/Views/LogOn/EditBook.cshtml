@@ -1,0 +1,104 @@
+﻿@model GerenciadorDeLivrosApi.Models.Livro
+@Scripts.Render("~/Scripts/Views/LogOn.js")
+<script>
+	$(document).ready(function () {
+		EditBookInit();
+	})
+</script>
+<div class="container body-content" style="margin-top: 5%">
+	<div id="body">
+		<form class="form-horizontal col-md-offset-3">
+			<div class="form-group">
+				<label class="col-sm-2 control-label"><b>*</b>Titulo</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputTitle" placeholder="Titulo do Livro" value="@Model.Titulo">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Subtítulo</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputSubTitle" placeholder="Subtítulo do Livro" value="@Model.SubTitulo">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Editores</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputEditores" placeholder="Editores do Livro" value="@Model.Editores">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Editora</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputEditora" placeholder="Editora do Livro" value="@Model.Editora">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Gênero</label>
+				<div class="col-sm-10">
+					@Html.DropDownList("Generos", new SelectList(ViewBag.Generos, "Id", "Descricao"))
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Número da Edição</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="inputNumeroEdicao" placeholder="Número da Edição" value="@Model.NumeroEdicao">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Quantidade de Paginas</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" id="inputQuantidadeDePaginas" placeholder="Quantidade de Paginas" value="@Model.QtdPaginas">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Data de Publicação</label>
+				<div class="col-sm-10">
+					<input class="datepicker" id="inputDataPublicacao" data-date-format="mm/dd/yyyy" value="@Model.AnoPublicacao">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Resenha</label>
+				<div class="col-sm-10">
+					<textarea id="inputResenha" class="form-control" value="@Model.Resenha">@Model.Resenha</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label"><b>*</b>Numero de Exemplares</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" id="inputNumeroExemplares" placeholder="Quantidade de Exemplares" value="@Model.NumeroExemplares">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">ISBN</label>
+				<div class="col-sm-10">
+					<input type="number" class="form-control" id="inputISBN" placeholder="Isbn" value="@Model.Isbn">
+				</div>
+			</div>
+
+			@if (Model.Id <= 0)
+			{
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="button" class="btn btn-default" onclick="RegisterBook()">Cadastrar</button>
+					</div>
+				</div>
+			}
+			else
+			{@Html.HiddenFor(model => model.Genero.Id)
+			<script>
+				var currentGenero = $("#Genero_Id").val();
+				document.getElementById('Generos').value = currentGenero;
+			</script>
+			@Html.HiddenFor(model => model.Id)
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="button" class="btn btn-default" onclick="SaveBook()">Salvar</button>
+				</div>
+			</div>
+		}
+
+		</form>
+	</div>
+
+</div>

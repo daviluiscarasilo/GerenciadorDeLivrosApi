@@ -1,0 +1,22 @@
+﻿@model List<GerenciadorDeLivrosApi.Models.Livro>
+@{
+
+	var gridLivros = new WebGrid(source: Model, canPage: true, canSort: true);
+}
+
+@gridLivros.GetHtml(
+							tableStyle: "table table-hover",
+							headerStyle: "header",
+							footerStyle: "footer",
+							alternatingRowStyle: "alter",
+
+							columns: gridLivros.Columns(
+						  //gridLivros.Column("", "", style: "char", format: (p) => Html.Raw("<label class='checkbox'><input type=\"checkbox\" name=\"spam\" value=\"" + p.Id + "\"><i></i></label>")),
+						  gridLivros.Column("Titulo", "Titulo", style: "char", format: (p) => Html.Raw(@"<label class='checkbox'><a href='LogOn/EditBooks/" + p.Id + @"'>" + p.Titulo + @"</a><i></i></label>")),
+						  gridLivros.Column("SubTitulo", "Subtitulo", style: "char"),
+						  gridLivros.Column("NumeroExemplares", "Numero de Exemplares", style: "char"),
+						  gridLivros.Column("Isbn", "ISBN", style: "char"),
+						  gridLivros.Column("Genero.Descricao", "Gênero", style: "char", format: (p) => Html.Raw(@"<label class='checkbox'><a href='LogOn/EditGeneros/" + p.Genero.Id + @"'>" + p.Genero.Descricao + @"</a><i></i></label>")),
+						  gridLivros.Column("NumeroExemplares", "Numero de Exemplares", style: "char"),
+						  gridLivros.Column("", "Excluir", style: "char Excluir", format: (p) => Html.Raw(@"<label class='checkbox'><a href='LogOn/DeleteBook/" + p.Id + @"'>Excluir</a><i></i></label>"))
+						))

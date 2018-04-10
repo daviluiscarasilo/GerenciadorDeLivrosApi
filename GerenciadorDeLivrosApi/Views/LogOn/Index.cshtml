@@ -1,0 +1,22 @@
+﻿@model List<GerenciadorDeLivrosApi.Models.Livro>
+<script>
+	$(document).ready(function () {
+		indexInit();
+	})
+</script>
+<div class="container body-content" style="margin-top: 5%">
+		<div class="col-md-12" style="height: 5em;text-align:-webkit-center;">
+			<label for="inputEmail3" class="col-sm-2 control-label">Pesquisar</label>
+			<div class="col-sm-4">
+				<input type="email" class="form-control"  id="search" placeholder="Pesquisar por titulo">
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-default" onclick="search()">Pesquisar</button>
+			</div>
+		</div>
+	<div id="body">
+		<div class="code-cut" id="grid">
+			@Html.Partial("GridViewBooks ", Model)
+		</div>
+	</div>
+</div>

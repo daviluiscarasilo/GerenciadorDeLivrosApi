@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/Scripts/Views/LogOn.js")
+
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("Gerenciador de Livros", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					@if (Session["User"] != null)
+	{
+				<li>@Html.ActionLink("Cadastro de Livros", "EditBook", "LogOn", null, null)</li>
+				<li>@Html.ActionLink("Cadastro de Gênero", "EditGenero", "LogOn", null, null)</li>
+				<li>@Html.ActionLink("Sair", "LogOff", "Home", null, null)</li>
+				<li><a>@Html.Label("Usuário Conectado:" + ((GerenciadorDeLivrosApi.Models.Usuario)(Session["User"])).Descricao, new { @class = "text-muted label", @style = "color : #999999 !important;" })</a></li>
+}
+else
+{
+				<li> @Html.ActionLink("Entrar no Gerenciador de Livros", "Index", "Home", null, null) </li>
+				<li> @Html.ActionLink("Cadastrar Usuário", "Edit", "Home", null, null) </li>
+				@*<li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
+}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - Gerenciador de Livros</p>
+		</footer>
+	</div>
+
+	<!-- Modal -->
+	<div id="ErrorModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="ModalTitle">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p id="ModalContent">Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+					<a type="button" class="btn pull-left" data-dismiss="modal" onclick="$('#im_modal').modal('hide');">Cancel</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>
